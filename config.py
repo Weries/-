@@ -29,8 +29,8 @@ template_id = "Vh7lUmCBfFOjhmwVfjg4P0hB4By9zAOPGO-tEXTSjzU"
 # template_id = "OIODb2PXT5yKWoZqPAdwZWxEjw27Ulvt_WyqoVBfQ7M"
 # 接收公众号消息的微信号，如果有多个，需要在[]里用英文逗号间隔，例如["wx1", "wx2"]
 # user = ["o-V5U6NOhQSzn8bfXg3YS39Wd8-4","o-V5U6AA6V8NZWt4sopoJbHF4bHA"]
-# user = ["o-V5U6NOhQSzn8bfXg3YS39Wd8-4","o-V5U6GwxU4nt1Hqepz44tFkfJcg"]  # 我和小号
-user = ["o-V5U6NOhQSzn8bfXg3YS39Wd8-4","o-V5U6AA6V8NZWt4sopoJbHF4bHA"]  # 我和老婆
+user = ["o-V5U6NOhQSzn8bfXg3YS39Wd8-4","o-V5U6GwxU4nt1Hqepz44tFkfJcg"]  # 我和小号
+# user = ["o-V5U6NOhQSzn8bfXg3YS39Wd8-4","o-V5U6AA6V8NZWt4sopoJbHF4bHA"]  # 我和老婆
 
 # 信息配置
 # 所在省份
