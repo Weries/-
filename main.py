@@ -172,12 +172,12 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     }
     response = post(url, headers=headers, json=data)
 
-    print(json.loads(response.text))
+    # print(json.loads(response.text))
 
 if __name__ == '__main__':
     # 获取accessToken
     accessToken = get_access_token()
-    print('accessToken sucess:{}'.format(accessToken))
+    # print('accessToken sucess:{}'.format(accessToken))
     # 接收的用户
     user = config.user
     # 传入省份和市获取天气信息
@@ -200,8 +200,9 @@ if __name__ == '__main__':
         return dict
     adjest_con,adjest_discr,adjest_advi = get_ad()
     weather_dict = weatherProcess(adjest_con,adjest_discr,adjest_advi)
-    print(weather_dict['穿衣指数'])
+    # print(weather_dict['穿衣指数'])
     # 公众号推送消息
     # print(user, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en)
     for i in user:
         send_message(i, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en,weather_dict)
+    print(today,week)
