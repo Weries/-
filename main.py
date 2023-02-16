@@ -206,3 +206,4 @@ if __name__ == '__main__':
     for i in user:
         send_message(i, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en,weather_dict)
     print(today,week)
+    print(year,month,day)
