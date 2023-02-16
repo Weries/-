@@ -1,4 +1,4 @@
-from time import time, localtime
+# from time import time, localtime
 import cityinfo
 import config
 import requests
@@ -88,6 +88,8 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     day = localtime().tm_mday
     today = datetime.date(datetime(year=year, month=month, day=day))
     week = week_list[today.isoweekday()]
+    print(today,week)
+    print(year,month,day)
     # 获取在一起的日子的日期格式
     love_year = int(config.love_date.split("-")[0])
     love_month = int(config.love_date.split("-")[1])
@@ -205,5 +207,4 @@ if __name__ == '__main__':
     # print(user, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en)
     for i in user:
         send_message(i, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en,weather_dict)
-    print(today,week)
-    print(year,month,day)
+
