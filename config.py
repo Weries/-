@@ -25,7 +25,7 @@ app_id = "wx925bf12222ac4e54"
 app_secret = "e60a9b74dea7521420b88b37b1ba7c65"
 # 模板消息id
 # template_id = "do58IGL9Y8_RiBKDzPVgDfl_GO1y8QMIR7NVPlYbl4w"
-template_id = "Vh7lUmCBfFOjhmwVfjg4P0hB4By9zAOPGO-tEXTSjzU"  
+template_id = "Y2wLreDNYAtDiOGIQg2uwZclYGnu_JNkcjnwaz7enwc"  
 # template_id = "OIODb2PXT5yKWoZqPAdwZWxEjw27Ulvt_WyqoVBfQ7M"
 # 接收公众号消息的微信号，如果有多个，需要在[]里用英文逗号间隔，例如["wx1", "wx2"]
 # user = ["o-V5U6NOhQSzn8bfXg3YS39Wd8-4","o-V5U6AA6V8NZWt4sopoJbHF4bHA"]
