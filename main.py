@@ -42,8 +42,8 @@ def get_access_token():
 
 def get_time():
     week_list = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六","星期日"]
-    t_utc = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M")
-    t_bj = datetime.datetime.utcnow()+ datetime.timedelta(hours=8)
+    t_utc = datetime.utcnow().strftime("%Y-%m-%d %H:%M")
+    t_bj = datetime.utcnow()+ datetime.timedelta(hours=8)
     calendar = t_bj.isocalendar()
     t_bj_all = t_bj.strftime("%Y-%m-%d %H:%M")
     t_bj = t_bj.strftime("%Y-%m-%d")
