@@ -1,4 +1,4 @@
-# from time import time, localtime
+from time import mktime,strptime
 import cityinfo
 import config
 import requests
@@ -40,12 +40,25 @@ def get_access_token():
     # return "60_LGxF3bf0iK86K_qhvHpEQZ21uYULxsTf4HgfzHfbPicr3Zc-yQDqes-KQv3M8ySeEdl92vIB8QpM-k24ABSHQQ2wkFh4TqW44tsSdMFm96VpMTAziSyd0OFXdLhRHzoAAyDIIeLUnJxHVtPcHHZdADAVVN"
     return access_token
 
+def get_time():
+    week_list = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六","星期日"]
+    t_utc = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M")
+    t_bj = datetime.datetime.utcnow()+ datetime.timedelta(hours=8)
+    calendar = t_bj.isocalendar()
+    t_bj_all = t_bj.strftime("%Y-%m-%d %H:%M")
+    t_bj = t_bj.strftime("%Y-%m-%d")
+    weekday = calendar[2]
+    week = week_list[weekday-1]
+    return week, t_bj, t_bj_all, t_utc
+
 def get_weather(province, city):
     # 城市id
     city_id = cityinfo.cityInfo[province][city]["AREAID"]
     # city_id = 101280101
     # 毫秒级时间戳
-    t = (int(round(time() * 1000)))
+#     t = (int(round(time() * 1000)))
+    week, t_bj, t_bj_all, t_utc = get_time()
+    t =int(round(mktime(strptime(t_bj_all, "%Y-%m-%d %H:%M"))*1000))
     headers = {
       "Referer": "http://www.weather.com.cn/weather1d/{}.shtml".format(city_id),
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
@@ -82,13 +95,7 @@ def get_ciba():
 
 def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature, note_ch, note_en,weather_dict):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
-    week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
-    calendar = datetime.now().isocalendar()
-    year = calendar[0]
-    nums_week = calendar[1]
-    weekday = calendar[2]
-    today = datetime.strftime(datetime.today(),'%Y-%m-%d')
-    week = week_list[weekday-1]
+
     print(today,week)
     # 获取在一起的日子的日期格式
     love_year = int(config.love_date.split("-")[0])
