@@ -1,9 +1,10 @@
 from time import mktime,strptime
+import datetime
 import cityinfo
 import config
 import requests
 from requests import get, post
-from datetime import datetime, date
+from datetime import datetime, date,timedelta
 import json
 import bs4
 
@@ -104,6 +105,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     love_day = int(config.love_date.split("-")[2])
     love_date = date(love_year, love_month, love_day)
     # 获取在一起的日期差
+    today = datetime.strptime(today,"%y-%m-%d")
     love_days = str(today.__sub__(love_date)).split(" ")[0]
     # 获取生日的月和日
     birthday_month = int(config.birthday1['birthday'].split("-")[1])
