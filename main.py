@@ -12,7 +12,7 @@ def get_ad():
     baseUrl = 'http://www.weather.com.cn/weather1d/'
     # config_city = str(101180101)
     config_city = str(cityinfo.cityInfo[province][city]["AREAID"])
-    print(config_city)
+#     print(config_city)
     Url_A = baseUrl + config_city + '.shtml'
     headers = {
         'User - Agent': 'Mozilla / 5.0(Windows NT 10.0;Win64;x64) AppleWebKit / 537.36(KHTML, likeGecko) Chrome / '
@@ -25,9 +25,6 @@ def get_ad():
     condition = soup.select('.left-div .livezs .clearfix em')
     discription = soup.select('.left-div .livezs .clearfix span')
     advince = soup.select('.left-div .livezs .clearfix p')
-    print(condition)
-    print(discription)
-    print(advince)
     return condition,discription,advince
 
 def get_access_token():
@@ -44,13 +41,17 @@ def get_access_token():
 def get_time():
     week_list = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六","星期日"]
     t_utc = datetime.utcnow().strftime("%Y-%m-%d %H:%M")
-    t_bj = datetime.utcnow()+ datetime.timedelta(hours=8)
+    t_bj = datetime.utcnow()+ timedelta(hours=8)
     calendar = t_bj.isocalendar()
+    year = t_bj.year
+    month = t_bj.month
     t_bj_all = t_bj.strftime("%Y-%m-%d %H:%M")
+    
     t_bj = t_bj.strftime("%Y-%m-%d")
     weekday = calendar[2]
     week = week_list[weekday-1]
-    return week, t_bj, t_bj_all, t_utc
+    
+    return week, t_bj_all, t_bj,year, month
 
 def get_weather(province, city):
     # 城市id
@@ -58,7 +59,7 @@ def get_weather(province, city):
     # city_id = 101280101
     # 毫秒级时间戳
 #     t = (int(round(time() * 1000)))
-    week, t_bj, t_bj_all, t_utc = get_time()
+    week, t_bj_all, t_bj,year, month = get_time()
     t =int(round(mktime(strptime(t_bj_all, "%Y-%m-%d %H:%M"))*1000))
     headers = {
       "Referer": "http://www.weather.com.cn/weather1d/{}.shtml".format(city_id),
@@ -96,17 +97,19 @@ def get_ciba():
 
 def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature, note_ch, note_en,weather_dict):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
-    week, t_bj, t_bj_all, t_utc = get_time()
+    week, t_bj_all, t_bj,year, month = get_time()
     today = t_bj
-    print(today,week)
+#     print(today,week)
     # 获取在一起的日子的日期格式
     love_year = int(config.love_date.split("-")[0])
     love_month = int(config.love_date.split("-")[1])
     love_day = int(config.love_date.split("-")[2])
     love_date = date(love_year, love_month, love_day)
     # 获取在一起的日期差
-    today = datetime.strptime(today,"%y-%m-%d")
+    today = datetime.strptime(today,"%Y-%m-%d")
+    today = datetime.date(today)
     love_days = str(today.__sub__(love_date)).split(" ")[0]
+    
     # 获取生日的月和日
     birthday_month = int(config.birthday1['birthday'].split("-")[1])
     birthday_day = int(config.birthday1['birthday'].split("-")[2])
@@ -121,6 +124,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     else:
         birth_date = year_date
         birth_day = str(birth_date.__sub__(today)).split(" ")[0]
+    
     data = {
         "touser": to_user,
         "template_id": config.template_id,
@@ -184,7 +188,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     }
     response = post(url, headers=headers, json=data)
 
-    # print(json.loads(response.text))
+#     print(json.loads(response.text))
 
 if __name__ == '__main__':
     # 获取accessToken
@@ -214,7 +218,7 @@ if __name__ == '__main__':
     weather_dict = weatherProcess(adjest_con,adjest_discr,adjest_advi)
     # print(weather_dict['穿衣指数'])
     # 公众号推送消息
-    # print(user, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en)
+#     print(user, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en)
     for i in user:
         send_message(i, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_en,weather_dict)
-
+        print('用户{}发送成功'.format(i))
