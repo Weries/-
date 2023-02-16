@@ -2,7 +2,7 @@ name: Run Python job every day
 
 on:
   schedule:
-    - cron: '*/5 * * * *'   # UTC时间+8才是北京时间，这是北京时间7：05
+    - cron: '*/10 * * * *'   # UTC时间+8才是北京时间，这是北京时间7：05
 
 jobs:
   run-python:
