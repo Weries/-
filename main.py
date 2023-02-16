@@ -95,7 +95,8 @@ def get_ciba():
 
 def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature, note_ch, note_en,weather_dict):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
-
+    week, t_bj, t_bj_all, t_utc = get_time()
+    today = t_bj
     print(today,week)
     # 获取在一起的日子的日期格式
     love_year = int(config.love_date.split("-")[0])
