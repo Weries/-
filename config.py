@@ -36,6 +36,8 @@ user = ["o-V5U6NOhQSzn8bfXg3YS39Wd8-4","o-V5U6AA6V8NZWt4sopoJbHF4bHA"]  # 我和
 # 所在省份
 province = "山西";city = "晋中"
 province = "宁夏";city = "石嘴山"
+w_province = '北京'
+w_city = '北京' 
 # 生日1，修改name为对应需要显示的名字，如果生日为农历，在最前面加上r即可
 birthday1 = {"name" : "小拾", "birthday": "1997-12-07"}
 # 生日2
