@@ -13,3 +13,4 @@ wechatpy==1.8.18
 xmltodict==0.13.0
 bs4
 datetime 
+lunardate
