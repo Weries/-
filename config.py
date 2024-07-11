@@ -34,7 +34,8 @@ user = ["o-V5U6NOhQSzn8bfXg3YS39Wd8-4","o-V5U6AA6V8NZWt4sopoJbHF4bHA"]  # 我和
 
 # 信息配置
 # 所在省份
-province = "山西";city = "晋中"
+# province = "山西";city = "晋中"
+province = "重庆";city = "重庆"
 # province = "宁夏";city = "石嘴山"
 w_province = '重庆'
 w_city = '重庆' 
